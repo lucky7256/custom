@@ -1,0 +1,36 @@
+id: migrate_article_file
+label: Public files
+source:
+  plugin: d7_file
+  scheme: public
+  constants:
+    migrate_files_path: 'C:/xampp/htdocs/d7/sites/default/files'
+process:
+  filename: filename
+  replaced_filepath:
+    -
+      plugin: str_replace
+      source: filepath
+      search: "sites/default/files/"
+      replace: ""
+  source_full_path:
+    -
+      plugin: concat
+      delimiter: /
+      source:
+        - constants/migrate_files_path
+        - '@replaced_filepath'
+    -
+      plugin: urlencode
+  uri:
+    plugin: file_copy
+    source:
+      - '@source_full_path'
+      - uri
+  filemime: filemime
+  status: status
+  created: timestamp
+  changed: timestamp
+  uid: uid
+destination:
+  plugin: entity:file

@@ -1,0 +1,8 @@
+<?php
+function implement_theme($existing, $type, $theme, $path) {
+  return [
+    'MyTemplate' => [
+      'variables' => ['test_var' => NULL],
+    ],
+  ];
+}

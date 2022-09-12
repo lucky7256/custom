@@ -1,0 +1,7 @@
+implement.twig:
+  path: 'twig_concept'
+  defaults:
+    _controller: '\Drupal\implement_twig\Controller\Display::showdata'
+    _title: 'implimention the twig concept'
+  requirements:
+    _permission: 'access content'    
