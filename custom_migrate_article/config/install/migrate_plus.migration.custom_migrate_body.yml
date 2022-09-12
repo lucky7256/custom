@@ -1,0 +1,30 @@
+id: custom_migrate_article
+label: 'custom migrate article'
+source:
+  plugin: custom_migrate_body
+  key: custom_migrate_data
+process:
+  nid: nid
+  vid: vid
+  type: type
+  langcode:
+    plugin: static_map
+    bypass: true
+    source: language
+    map:
+      und: en
+  title: title
+  uid: uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  'body/format': restricted_html
+  'body/value': body_value
+  'body/summary': body_summary
+  field_tags: tags
+  field_image: images
+destination:
+  plugin: 'entity:node'
+  default_bundle: article

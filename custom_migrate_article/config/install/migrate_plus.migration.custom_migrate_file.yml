@@ -1,0 +1,16 @@
+id: custom_migrate_files
+label: 'custom migrate files'
+source:
+  plugin: custom_migrate_files
+  key: custom_migrate_data
+process:
+  fid: fid
+  uid: uid
+  filename: filename	
+  uri: uri	
+  filemime: filemime	
+  status: status
+  created: timestamp
+  changed: timestamp
+destination:
+  plugin: entity:file
