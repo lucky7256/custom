@@ -1,0 +1,32 @@
+id: tags
+label: 'custom migrate tags'
+migration_group: custom_media
+migration_tags:
+  - file
+source:
+  plugin: d7_taxonomy_term
+  key: custom_migrate_data
+  bundle: tags
+process:
+  tid: tid
+  vid: bundle
+  name: name
+  weight: weight
+  description/value: description
+  description/format: format
+  parent_id:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: parent
+    -
+      plugin: migration_lookup
+      migration: example_category
+  parent:
+    plugin: default_value
+    default_value: 0
+    source: '@parent_id'
+  changed: timestamp
+destination:
+  plugin: 'entity:taxonomy_term'
+migration_dependencies: null

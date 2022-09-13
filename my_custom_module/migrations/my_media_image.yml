@@ -1,0 +1,33 @@
+id: my_media_image
+label: Files
+migration_group: custom_media
+migration_tags:
+  - images
+source:
+  plugin: file_entity
+  type: image
+  constants:
+    bundle: 'image'
+
+process:
+  bundle: 'constants/bundle'
+
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: "und"
+
+  # Image field see media_entity.bundle.image.yml.
+  field_media_image/target_id:
+    -
+      plugin: migration_lookup
+      migration: file
+      source: fid
+  field_media_image/alt: field_file_image_alt_text/0/value
+
+
+destination:
+  plugin: entity:media
+migration_dependencies:
+  required:
+    - file

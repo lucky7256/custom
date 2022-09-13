@@ -1,0 +1,27 @@
+id: my_media_audio
+label: Media Audio
+migration_group: custom_media
+migration_tags:
+  - audio
+source:
+  plugin: file_entity
+  type: audio
+  constants:
+    bundle: 'audio'
+
+process:
+  bundle: 'constants/bundle'
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: "und"
+  field_media_audio_file/target_id: 
+    -
+      plugin: migration_lookup
+      migration: file
+      source: fid
+destination:
+  plugin: entity:media
+migration_dependencies:
+  required:
+    - file
