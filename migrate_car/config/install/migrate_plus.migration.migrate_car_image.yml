@@ -1,0 +1,23 @@
+id: migrate_car_image_media
+label: 'migrate the car image media'
+source:
+  plugin: migrate_car_image_media
+  key: custom_migrate_data
+  constants:
+    bundle: 'image'
+process:
+  bundle: 'constants/bundle'
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: "und"
+  field_media_image/target_id:
+    -
+      plugin: migration_lookup
+      migration: car_image_file_migrate
+      source: field_car_image_fid
+  field_media_image/field_media_image_alt: field_file_image_alt_text
+  field_media_image/field_media_image_title: field_file_image_title_text
+destination:
+  plugin: entity:media
+  default_bundle: image

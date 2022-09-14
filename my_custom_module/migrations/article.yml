@@ -44,6 +44,22 @@ process:
         plugin: migration_lookup
         source: fid
         migration: my_media_audio
+  field_vedio:
+    plugin: sub_process
+    source: field_vedio
+    process:
+      target_id:
+        plugin: migration_lookup
+        source: fid
+        migration: my_media_local_video
+  field_remote_vedio:
+    plugin: sub_process
+    source: field_remote_vedio
+    process:
+      target_id:
+        plugin: migration_lookup
+        source: fid
+        migration: my_media_video
 destination:
   plugin: 'entity:node'
 migration_dependencies:

@@ -1,0 +1,8 @@
+<?php
+/**
+ * Implements hook_uninstall()
+ **/
+function migrate_car_uninstall() {
+ 
+
+}

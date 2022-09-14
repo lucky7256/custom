@@ -1,0 +1,20 @@
+id: d7_paragraph_detials
+label: paragraphs detials
+source:
+  plugin: migrate_paragraphs
+  key: custom_migrate_data
+#  field_name is used in our custom plugin to get data about the paragraph item.
+  field_name: field_car_detials
+Process:
+  field_name:
+    plugin: iterator
+    source: field_name
+    process:
+      value: value
+    revision_id: revision_id
+destination:
+ plugin: 'entity_reference_revisions:paragraph'
+ default_bundle: car_detials
+migration_dependencies:
+ required: {  }
+ optional: {  }

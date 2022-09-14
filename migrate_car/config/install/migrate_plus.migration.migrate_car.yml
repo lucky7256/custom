@@ -1,0 +1,40 @@
+id: migrate_car
+label: 'custom migrate article'
+source:
+  plugin: migrate_car
+  key: custom_migrate_data
+process:
+  nid: nid
+  vid: vid
+  type: type
+  langcode:
+    plugin: static_map
+    bypass: true
+    source: language
+    map:
+      und: en
+  title: title
+  uid: uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  'body/format': restricted_html
+  'body/value': body_value
+  'body/summary': body_summary
+  field_car_image:
+    plugin: sub_process
+    source: field_car_image_fid
+    process:
+      target_id:
+        plugin: migration_lookup
+        source: images
+        migration: car_image_file_migrate
+  field_car_color:
+    plugin: migration_lookup
+    source: car_color
+    migration: migrate_car_color
+destination:
+  plugin: 'entity:node'
+  default_bundle: car

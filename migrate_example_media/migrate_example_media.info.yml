@@ -1,4 +1,4 @@
-name: Migrate Media
+name: Article Migratation
 type: module
 description: Migration scripts examples for Media migration.
 dependencies:

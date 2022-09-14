@@ -1,0 +1,33 @@
+id: my_media_video
+label: Files
+
+
+source:
+  plugin: file_entity
+  type: video
+  # See output of SELECT DISTINCT(SUBSTRING_INDEX(uri, ':', 1))  FROM file_managed WHERE type = 'video';
+  scheme:
+    - "youtube"
+  constants:
+    bundle: 'remote_video'
+process:
+  bundle: 'constants/bundle'
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: "und"
+
+  name: filename
+  status: status
+  created: timestamp
+  changed: timestamp
+
+  # Embed field see media_entity.bundle.video.yml.
+  field_media_oembed_video:
+    value:
+      plugin: youtube_files
+      source: uri
+
+
+destination:
+  plugin: entity:media

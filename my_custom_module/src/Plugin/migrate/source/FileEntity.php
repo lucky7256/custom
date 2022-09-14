@@ -55,7 +55,7 @@ class FileEntity extends FieldableEntity {
       $fid = $row->getSourceProperty('fid');
       $row->setSourceProperty($field, $this->getFieldValues('file', $field, $fid));
     }
-   
+  
     return parent::prepareRow($row);
   }
 

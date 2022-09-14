@@ -1,0 +1,30 @@
+
+id: my_media_local_video
+label: Files
+migration_group: custom_media
+source:
+  plugin: file_entity
+  type: video
+  scheme:
+    - "public"
+  constants:
+    bundle: 'video'
+process:
+  bundle: 'constants/bundle'
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: "und"
+  field_media_video_file/target_id:
+    plugin: migration_lookup
+    migration: file
+    source: fid
+  name: filename
+  field_title: field_video_title
+  # Transcript field.
+  field_transcript: field_transcript
+destination:
+  plugin: entity:media
+  migration_dependencies:
+    required:
+      - file
