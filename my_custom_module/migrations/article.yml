@@ -52,6 +52,26 @@ process:
         plugin: migration_lookup
         source: fid
         migration: my_media_local_video
+
+  field_contact:
+    plugin: sub_process
+    source: field_contact
+    process:
+      temporary_ids:
+        plugin: migration_lookup
+        migration: paragraph_migrate
+        source: value
+      target_id:
+        plugin: extract
+        source: '@temporary_ids'
+        index:
+          - 0
+      target_revision_id:
+        plugin: extract
+        source: '@temporary_ids'
+        index:
+          - 1
+
   field_remote_vedio:
     plugin: sub_process
     source: field_remote_vedio
@@ -62,8 +82,10 @@ process:
         migration: my_media_video
 destination:
   plugin: 'entity:node'
+default_bundle: article
 migration_dependencies:
   required:
     - my_media_image
     - tags
     - my_media_audio
+    - paragraph_migrate

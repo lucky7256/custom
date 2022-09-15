@@ -1,0 +1,22 @@
+id: paragraph_migrate
+label: paragraph migrate
+migration_group: custom_media
+source:
+  plugin: paragraph_iteam
+  field_name: field_contact 
+process:
+  field_phone_number:
+    plugin: sub_process
+    source: field_phone_number
+    process:
+      value: value
+  field_email:
+    plugin: sub_process
+    source: field_email
+    process:
+      value: value 
+destination:
+  plugin: 'entity_reference_revisions:paragraph'
+  default_bundle: contact
+
+
