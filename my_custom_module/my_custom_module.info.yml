@@ -1,5 +1,5 @@
-name: migrate trail article data
-description: migrate the article data from d7 to d8
+name: migrate article data from d7 to d9
+description: migrate the article data from d7 to d9
 package: CUSTOM
 type: module
 core_version_requirement: ^8.0 || ^9.0
