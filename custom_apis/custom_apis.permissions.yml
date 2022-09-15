@@ -1,0 +1,10 @@
+# create article using rest api:
+#   title: 'create the article using rest api'
+#   description: 'permission to create the article using rest api'
+#   restrict access: true
+# update article using rest api:
+#   title: 'delete,update the article using rest api'
+#   description: 'permission to delete,update the article using rest api'
+#   restrict access: true
+permission_callbacks:
+  - Drupal\custom_apis\CustomApiPermission::permissions

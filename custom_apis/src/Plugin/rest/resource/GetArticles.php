@@ -121,7 +121,7 @@ class GetArticles extends ResourceBase {
     public function post($data) {
 
       // Use current user after pass authentication to validate access.
-      if (!$this->current_user->hasPermission('administer site content')) {
+      if (!$this->current_user->hasPermission('create article using rest api')) {
   
         // Display the default access denied page.
         throw new AccessDeniedHttpException('Access Denied.');
@@ -145,7 +145,7 @@ class GetArticles extends ResourceBase {
           'field_tags' =>$data["field_tags"],
           'field_image' =>$data["field_image"],
           'type'=>'article',
-          'status' => $data["status"],
+          'status' => 0,
         )
       );
       $node->save();
@@ -163,7 +163,7 @@ class GetArticles extends ResourceBase {
        
      
            // Use current user after pass authentication to validate access.
-      if (!$this->current_user->hasPermission('administer site content')) {
+      if (!$this->current_user->hasPermission('update article using rest api')) {
   
         // Display the default access denied page.
         throw new AccessDeniedHttpException('Access Denied.');
@@ -179,7 +179,7 @@ class GetArticles extends ResourceBase {
       $node->title=$data['title'];
       $node->body=$data['body'];
       $node->field_tags=$data['field_tags'];
-      $node->field_image=$data['field_image'];
+      $node->status=$data['status'];
       $node->save();
 
       $response = new ResourceResponse(" Sucessfully update the node the node",200);
@@ -191,7 +191,7 @@ class GetArticles extends ResourceBase {
     {
      
           // Use current user after pass authentication to validate access.
-          if (!$this->current_user->hasPermission('administer site content')) {
+          if (!$this->current_user->hasPermission('update article using rest api')) {
   
             // Display the default access denied page.
             throw new AccessDeniedHttpException('Access Denied.');
